@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Banners Meta Ads – Club La Araña</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:#0d0d0d; font-family:'Barlow',sans-serif; padding:40px 20px; }
+
+    h1 { color:#f0f4ff; font-family:'Bebas Neue',sans-serif; font-size:32px; margin-bottom:6px; letter-spacing:1px; }
+    .subtitle { color:#667; font-size:13px; margin-bottom:48px; }
+
+    .banner-section { margin-bottom:64px; }
+    .banner-label { color:#F5C518; font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; margin-bottom:6px; }
+    .banner-size { color:#445; font-size:12px; margin-bottom:20px; }
+    .banner-wrap { display:flex; justify-content:center; }
+
+    /* ═══════════════════════════════
+       SHARED BANNER STYLES
+    ═══════════════════════════════ */
+    .banner {
+      position:relative; overflow:hidden;
+      font-family:'Bebas Neue',sans-serif;
+      background:#060608;
+    }
+
+    /* Animated background gradient */
+    .banner .bg-anim {
+      position:absolute; inset:0;
+      background:
+        radial-gradient(ellipse 80% 60% at 30% 20%, rgba(245,197,24,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(117,170,219,0.1) 0%, transparent 50%),
+        #060608;
+      animation:bgPulse 4s ease-in-out infinite alternate;
+    }
+    @keyframes bgPulse {
+      from { opacity:0.7; }
+      to   { opacity:1; }
+    }
+
+    /* Grid lines */
+    .banner .grid {
+      position:absolute; inset:0;
+      background-image:
+        linear-gradient(rgba(245,197,24,0.04) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(245,197,24,0.04) 1px,transparent 1px);
+      background-size:40px 40px;
+    }
+
+    /* Flying coins animation */
+    .coin {
+      position:absolute;
+      font-size:22px;
+      opacity:0;
+      animation:floatCoin var(--dur,3s) ease-in-out var(--delay,0s) infinite;
+    }
+    @keyframes floatCoin {
+      0%   { opacity:0; transform:translateY(0) rotate(0deg) scale(0.6); }
+      20%  { opacity:0.8; }
+      80%  { opacity:0.6; }
+      100% { opacity:0; transform:translateY(-120px) rotate(360deg) scale(1.2); }
+    }
+
+    /* Diagonal gold stripe */
+    .stripe {
+      position:absolute;
+      background:linear-gradient(90deg, transparent, rgba(245,197,24,0.08), transparent);
+      height:2px;
+      width:200%;
+      left:-50%;
+      animation:swipe 3s ease-in-out infinite;
+    }
+    @keyframes swipe {
+      0%   { top:-10%; transform:rotate(-15deg) translateX(-30%); opacity:0; }
+      30%  { opacity:1; }
+      70%  { opacity:1; }
+      100% { top:110%; transform:rotate(-15deg) translateX(30%); opacity:0; }
+    }
+
+    /* ── COUNTER ANIMATION ── */
+    .counter {
+      display:inline-block;
+      animation:countUp 2s ease-out 0.8s both;
+    }
+    @keyframes countUp {
+      0%   { opacity:0; transform:translateY(20px); }
+      100% { opacity:1; transform:translateY(0); }
+    }
+
+    /* ── PULSE RING ── */
+    .pulse-ring {
+      position:absolute;
+      border-radius:50%;
+      border:2px solid rgba(245,197,24,0.4);
+      animation:ringPulse 2s ease-out infinite;
+    }
+    @keyframes ringPulse {
+      0%   { transform:scale(0.8); opacity:1; }
+      100% { transform:scale(1.8); opacity:0; }
+    }
+
+    /* ── SLIDE IN ANIMATIONS ── */
+    .slide-up   { animation:slideUp   0.7s cubic-bezier(.34,1.56,.64,1) both; }
+    .slide-up-2 { animation:slideUp   0.7s cubic-bezier(.34,1.56,.64,1) 0.15s both; }
+    .slide-up-3 { animation:slideUp   0.7s cubic-bezier(.34,1.56,.64,1) 0.3s  both; }
+    .slide-up-4 { animation:slideUp   0.7s cubic-bezier(.34,1.56,.64,1) 0.45s both; }
+    .fade-in    { animation:fadeIn    0.6s ease 0.5s both; }
+    .fade-in-2  { animation:fadeIn    0.6s ease 0.7s both; }
+    .fade-in-3  { animation:fadeIn    0.6s ease 0.9s both; }
+    @keyframes slideUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none} }
+    @keyframes fadeIn  { from{opacity:0} to{opacity:1} }
+
+    /* ── CTA BUTTON ── */
+    .btn-cta {
+      display:inline-flex; align-items:center; gap:8px;
+      background:linear-gradient(135deg,#F5C518,#c9a010);
+      color:#060608; border-radius:4px;
+      font-family:'Barlow Condensed',sans-serif;
+      font-weight:900; letter-spacing:1.5px; text-transform:uppercase;
+      animation:btnPop 0.7s cubic-bezier(.34,1.56,.64,1) 0.9s both;
+      position:relative; overflow:hidden;
+    }
+    .btn-cta::after {
+      content:''; position:absolute; top:0; left:-100%;
+      width:60%; height:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);
+      animation:shine 2.5s ease 1.5s infinite;
+    }
+    @keyframes btnPop { from{opacity:0;transform:scale(0.7)} to{opacity:1;transform:scale(1)} }
+    @keyframes shine  { 0%{left:-100%} 100%{left:200%} }
+
+    /* ── BONO BADGE ── */
+    .bono-badge {
+      display:inline-flex; align-items:center; gap:6px;
+      background:rgba(0,230,118,0.15); border:1.5px solid rgba(0,230,118,0.4);
+      border-radius:100px; color:#00e676;
+      font-family:'Barlow Condensed',sans-serif; font-weight:700;
+      letter-spacing:1px; text-transform:uppercase;
+    }
+    .bono-dot { width:6px; height:6px; background:#00e676; border-radius:50%; animation:pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(0.6)} }
+
+    /* ══════════════════════════════════════════════
+       BANNER 1 — CUADRADO 1:1 (1080x1080)
+       Feed de Instagram / Facebook
+    ══════════════════════════════════════════════ */
+    #b1 {
+      width:540px; height:540px; /* display at 50% */
+      border-radius:12px;
+      box-shadow:0 24px 80px rgba(0,0,0,0.7);
+    }
+    #b1 .content {
+      position:relative; z-index:2;
+      width:100%; height:100%;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      padding:36px;
+      text-align:center;
+    }
+    #b1 .spider { font-size:52px; margin-bottom:8px; filter:drop-shadow(0 0 20px rgba(117,170,219,0.5)); }
+    #b1 .eyebrow { font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; letter-spacing:3px; color:#75AADB; text-transform:uppercase; margin-bottom:4px; }
+    #b1 .main-num { font-size:96px; line-height:1; color:#F5C518; text-shadow:0 0 40px rgba(245,197,24,0.5); }
+    #b1 .main-label { font-size:28px; color:#f0f4ff; letter-spacing:1px; margin-bottom:6px; }
+    #b1 .sub { font-family:'Barlow',sans-serif; font-size:14px; color:#8899bb; line-height:1.5; margin-bottom:18px; }
+    #b1 .sub strong { color:#f0f4ff; }
+    #b1 .btn-cta { font-size:15px; padding:12px 28px; border-radius:4px; }
+    #b1 .bono-badge { font-size:11px; padding:5px 14px; margin-bottom:14px; }
+    #b1 .watermark { position:absolute; bottom:14px; right:18px; font-family:'Barlow',sans-serif; font-size:10px; color:rgba(136,153,187,0.35); letter-spacing:1px; }
+
+    /* ══════════════════════════════════════════════
+       BANNER 2 — STORIES/REELS 9:16 (1080x1920)
+    ══════════════════════════════════════════════ */
+    #b2 {
+      width:304px; height:540px; /* display at ~28% */
+      border-radius:24px;
+      box-shadow:0 24px 80px rgba(0,0,0,0.7);
+    }
+    #b2 .content {
+      position:relative; z-index:2;
+      width:100%; height:100%;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:space-between;
+      padding:32px 24px 28px;
+      text-align:center;
+    }
+    #b2 .top { display:flex; flex-direction:column; align-items:center; }
+    #b2 .spider { font-size:44px; filter:drop-shadow(0 0 20px rgba(117,170,219,0.5)); }
+    #b2 .club { font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; letter-spacing:3px; color:#75AADB; text-transform:uppercase; margin-top:6px; }
+    #b2 .middle { display:flex; flex-direction:column; align-items:center; }
+    #b2 .main-num { font-size:100px; line-height:1; color:#F5C518; text-shadow:0 0 50px rgba(245,197,24,0.6); }
+    #b2 .main-label { font-size:26px; color:#f0f4ff; letter-spacing:1px; margin-bottom:8px; }
+    #b2 .bono-badge { font-size:11px; padding:5px 14px; margin-bottom:12px; }
+    #b2 .sub { font-family:'Barlow',sans-serif; font-size:13px; color:#8899bb; line-height:1.6; }
+    #b2 .sub strong { color:#f0f4ff; }
+    #b2 .bottom { display:flex; flex-direction:column; align-items:center; gap:8px; width:100%; }
+    #b2 .btn-cta { font-size:15px; padding:13px 0; border-radius:6px; width:100%; justify-content:center; }
+    #b2 .small-note { font-family:'Barlow',sans-serif; font-size:11px; color:rgba(136,153,187,0.5); }
+
+    /* ══════════════════════════════════════════════
+       BANNER 3 — HORIZONTAL 1.91:1 (1200x628)
+       Feed de Facebook
+    ══════════════════════════════════════════════ */
+    #b3 {
+      width:600px; height:314px;
+      border-radius:12px;
+      box-shadow:0 24px 80px rgba(0,0,0,0.7);
+    }
+    #b3 .content {
+      position:relative; z-index:2;
+      width:100%; height:100%;
+      display:flex; align-items:center;
+      padding:0 48px;
+      gap:40px;
+    }
+    #b3 .left { display:flex; flex-direction:column; align-items:flex-start; flex:1; }
+    #b3 .spider { font-size:42px; margin-bottom:4px; filter:drop-shadow(0 0 16px rgba(117,170,219,0.5)); }
+    #b3 .eyebrow { font-family:'Barlow Condensed',sans-serif; font-size:12px; font-weight:700; letter-spacing:3px; color:#75AADB; text-transform:uppercase; margin-bottom:4px; }
+    #b3 .main-num { font-size:88px; line-height:.9; color:#F5C518; text-shadow:0 0 40px rgba(245,197,24,0.5); }
+    #b3 .main-label { font-size:24px; color:#f0f4ff; letter-spacing:1px; }
+    #b3 .right { display:flex; flex-direction:column; align-items:center; gap:12px; min-width:180px; }
+    #b3 .bono-badge { font-size:11px; padding:5px 14px; }
+    #b3 .sub { font-family:'Barlow',sans-serif; font-size:13px; color:#8899bb; text-align:center; line-height:1.6; }
+    #b3 .sub strong { color:#f0f4ff; }
+    #b3 .btn-cta { font-size:14px; padding:12px 22px; border-radius:4px; width:100%; justify-content:center; }
+    #b3 .divider-v { width:1px; height:60%; background:linear-gradient(to bottom, transparent, rgba(245,197,24,0.2), transparent); }
+
+    /* ── INSTRUCTIONS PANEL ── */
+    .instructions {
+      background:#111; border:1px solid #222; border-radius:12px;
+      padding:28px 32px; max-width:700px; margin:0 auto 60px;
+    }
+    .instructions h2 { color:#F5C518; font-family:'Bebas Neue',sans-serif; font-size:24px; margin-bottom:16px; letter-spacing:1px; }
+    .instructions ol { padding-left:20px; }
+    .instructions li { color:#8899bb; font-size:14px; line-height:1.9; }
+    .instructions li strong { color:#f0f4ff; }
+    .instructions .tip { background:rgba(117,170,219,0.07); border-left:3px solid #75AADB; border-radius:4px; padding:12px 16px; margin-top:16px; font-size:13px; color:#8899bb; line-height:1.7; }
+    .instructions .tip strong { color:#75AADB; }
+  </style>
+</head>
+<body>
+
+<h1>🕷️ Banners Meta Ads — Club La Araña</h1>
+<p class="subtitle">3 formatos animados · Sin palabras clave de gambling · Listos para capturar</p>
+
+<!-- ══ INSTRUCCIONES ══ -->
+<div class="instructions">
+  <h2>📋 Cómo usar estos banners</h2>
+  <ol>
+    <li>Abrí este archivo en Chrome y <strong>hacé una captura de pantalla</strong> de cada banner individualmente</li>
+    <li>Para grabar la animación usá <strong>Loom, OBS o la grabación de pantalla</strong> de tu celular/PC por ~5 segundos</li>
+    <li>Subí el video/GIF a Meta Ads como <strong>creative del anuncio</strong></li>
+    <li>En el texto del anuncio usá frases como: <em>"¿Querés ganar desde el celular? 👇"</em> o <em>"Bono de bienvenida exclusivo 🕷️"</em></li>
+    <li>URL destino: tu landing page del Club La Araña</li>
+  </ol>
+  <div class="tip"><strong>💡 Tip:</strong> El formato que mejor convierte en Meta para este tipo de oferta es el <strong>Stories/Reels vertical</strong>. Arrancá con ese y usá los otros dos como variantes A/B.</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     BANNER 1 — CUADRADO (Feed Instagram/FB)
+══════════════════════════════════════ -->
+<div class="banner-section">
+  <div class="banner-label">📐 Banner 1 — Feed Instagram / Facebook</div>
+  <div class="banner-size">Formato: 1080×1080px (cuadrado 1:1) · Mostrado al 50%</div>
+  <div class="banner-wrap">
+    <div class="banner" id="b1">
+      <div class="bg-anim"></div>
+      <div class="grid"></div>
+      <div class="stripe"></div>
+
+      <!-- Coins -->
+      <div class="coin" style="left:8%;bottom:15%;--dur:2.8s;--delay:0.2s">💰</div>
+      <div class="coin" style="left:85%;bottom:20%;--dur:3.2s;--delay:0.8s;font-size:16px">🪙</div>
+      <div class="coin" style="left:20%;bottom:10%;--dur:2.5s;--delay:1.4s;font-size:18px">💰</div>
+      <div class="coin" style="left:70%;bottom:8%;--dur:3.5s;--delay:0.5s">🪙</div>
+      <div class="coin" style="left:50%;bottom:5%;--dur:2.9s;--delay:1.8s;font-size:14px">💰</div>
+
+      <div class="content">
+        <div class="spider slide-up">🕷️</div>
+        <div class="eyebrow slide-up-2">Club La Araña</div>
+        <div class="main-num slide-up-3 counter">+$120K</div>
+        <div class="main-label slide-up-3">GANADOS HOY</div>
+        <div class="bono-badge fade-in">
+          <span class="bono-dot"></span>
+          🎁 BONO 20% BIENVENIDA
+        </div>
+        <div class="sub fade-in-2">
+          Cargá desde <strong>$2.000 ARS</strong> y empezá<br/>a ganar desde el primer minuto.
+        </div>
+        <a class="btn-cta fade-in-3" href="#">
+          📲 QUIERO ENTRAR
+        </a>
+      </div>
+      <div class="watermark">clubarañaok.com</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     BANNER 2 — STORIES/REELS (9:16)
+══════════════════════════════════════ -->
+<div class="banner-section">
+  <div class="banner-label">📱 Banner 2 — Stories & Reels (el que más convierte)</div>
+  <div class="banner-size">Formato: 1080×1920px (vertical 9:16) · Mostrado al 28%</div>
+  <div class="banner-wrap">
+    <div class="banner" id="b2">
+      <div class="bg-anim"></div>
+      <div class="grid"></div>
+      <div class="stripe"></div>
+
+      <!-- Coins -->
+      <div class="coin" style="left:10%;bottom:25%;--dur:2.8s;--delay:0.3s">💰</div>
+      <div class="coin" style="left:80%;bottom:30%;--dur:3.1s;--delay:1.1s;font-size:16px">🪙</div>
+      <div class="coin" style="left:50%;bottom:15%;--dur:2.6s;--delay:0.7s;font-size:14px">💰</div>
+      <div class="coin" style="left:25%;bottom:10%;--dur:3.3s;--delay:1.5s">🪙</div>
+      <div class="coin" style="left:70%;bottom:8%;--dur:2.9s;--delay:2s;font-size:18px">💰</div>
+
+      <div class="content">
+        <div class="top">
+          <div class="spider slide-up">🕷️</div>
+          <div class="club slide-up-2">Club La Araña</div>
+        </div>
+
+        <div class="middle">
+          <div class="main-num slide-up-2 counter">+$120K</div>
+          <div class="main-label slide-up-3">GANADOS HOY</div>
+          <div class="bono-badge fade-in">
+            <span class="bono-dot"></span>
+            🎁 BONO 20% BIENVENIDA
+          </div>
+          <div class="sub fade-in-2">
+            Cargá desde <strong>$2.000 ARS</strong><br/>
+            y empezá a ganar ahora mismo.<br/>
+            Retiros el mismo día. 🏆
+          </div>
+        </div>
+
+        <div class="bottom">
+          <a class="btn-cta fade-in-3" href="#">
+            📲 ESCRIBINOS AHORA
+          </a>
+          <div class="small-note fade-in-3">Respuesta inmediata · Sin esperas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     BANNER 3 — HORIZONTAL (Feed FB)
+══════════════════════════════════════ -->
+<div class="banner-section">
+  <div class="banner-label">🖥️ Banner 3 — Feed Facebook Horizontal</div>
+  <div class="banner-size">Formato: 1200×628px (1.91:1) · Mostrado al 50%</div>
+  <div class="banner-wrap">
+    <div class="banner" id="b3">
+      <div class="bg-anim"></div>
+      <div class="grid"></div>
+      <div class="stripe"></div>
+
+      <!-- Coins -->
+      <div class="coin" style="left:5%;bottom:10%;--dur:2.8s;--delay:0.4s;font-size:18px">💰</div>
+      <div class="coin" style="left:45%;bottom:5%;--dur:3.2s;--delay:1s;font-size:14px">🪙</div>
+      <div class="coin" style="left:90%;bottom:15%;--dur:2.6s;--delay:0.6s;font-size:16px">💰</div>
+
+      <div class="content">
+        <div class="left">
+          <div class="spider slide-up">🕷️</div>
+          <div class="eyebrow slide-up-2">Club La Araña</div>
+          <div class="main-num slide-up-3 counter">+$120K</div>
+          <div class="main-label slide-up-3">GANADOS HOY</div>
+        </div>
+
+        <div class="divider-v fade-in"></div>
+
+        <div class="right">
+          <div class="bono-badge fade-in">
+            <span class="bono-dot"></span>
+            🎁 BONO 20%
+          </div>
+          <div class="sub fade-in-2">
+            Cargá desde <strong>$2.000 ARS</strong><br/>
+            Retiros el mismo día.<br/>
+            Respuesta inmediata.
+          </div>
+          <a class="btn-cta fade-in-3" href="#">
+            📲 ENTRAR AHORA
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
